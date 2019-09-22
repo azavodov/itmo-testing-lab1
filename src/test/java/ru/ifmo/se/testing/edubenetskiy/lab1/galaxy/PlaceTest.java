@@ -42,6 +42,21 @@ class PlaceTest {
     }
 
     @Test
+    void test_isInside_falseForChild() {
+        Place house = new Place("house");
+        Place room = new Place("room", house);
+        assertThat(house.isInside(room)).isFalse();
+    }
+
+    @Test
+    void test_isInside_falseForIndirectDescendant() {
+        Place house = new Place("house");
+        Place room = new Place("room", house);
+        Place corner = new Place("corner", room);
+        assertThat(house.isInside(corner)).isFalse();
+    }
+
+    @Test
     void test_isInside_trueForParent() {
         Place house = new Place("house");
         Place room = new Place("room", house);
