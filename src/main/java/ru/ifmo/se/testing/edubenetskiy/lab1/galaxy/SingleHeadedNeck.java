@@ -1,4 +1,4 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1;
+package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
 
 import java.util.Collections;
 import java.util.Set;
