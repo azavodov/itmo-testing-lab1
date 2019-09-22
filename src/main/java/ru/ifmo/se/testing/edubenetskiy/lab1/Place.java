@@ -6,7 +6,15 @@ public class Place {
     private String name;
     private Place parentPlace;
 
-    public Place(Place parentPlace) {
+    public Place(String name) {
+        this(name, null);
+    }
+
+    public Place(String name, Place parentPlace) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("name of place should not be empty");
+        }
+        this.name = name;
         this.parentPlace = parentPlace;
     }
 
