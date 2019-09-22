@@ -33,4 +33,9 @@ public class Place {
         return this.parentPlace.equals(otherPlace) ||
                this.parentPlace.isInside(otherPlace);
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
