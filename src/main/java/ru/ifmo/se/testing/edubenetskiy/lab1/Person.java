@@ -2,6 +2,7 @@ package ru.ifmo.se.testing.edubenetskiy.lab1;
 
 public class Person {
 
+    private final String name;
     private boolean isNervous;
     private boolean isStunned;
     private boolean isBelievingEyes;
