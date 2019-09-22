@@ -49,7 +49,7 @@ public class Person {
         throw new UnsupportedOperationException("not implemented yet"); // todo
     }
 
-    public boolean setLocation(Place newLocation) {
+    public boolean goTo(Place newLocation) {
         throw new UnsupportedOperationException("not implemented yet"); // todo
     }
 
