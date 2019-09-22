@@ -34,4 +34,25 @@ class PlaceTest {
         Place room = new Place("room", house);
         assertThat(room.getParentPlace()).isSameAs(house);
     }
+
+    @Test
+    void test_isInside_falseForItself() {
+        Place room = new Place("room");
+        assertThat(room.isInside(room)).isFalse();
+    }
+
+    @Test
+    void test_isInside_trueForParent() {
+        Place house = new Place("house");
+        Place room = new Place("room", house);
+        assertThat(room.isInside(house)).isTrue();
+    }
+
+    @Test
+    void test_isInside_trueForIndirectAncestor() {
+        Place house = new Place("house");
+        Place room = new Place("room", house);
+        Place corner = new Place("corner", room);
+        assertThat(corner.isInside(house)).isTrue();
+    }
 }
