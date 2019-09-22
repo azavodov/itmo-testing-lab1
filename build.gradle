@@ -1,11 +1,18 @@
 plugins {
     id 'java'
+    id 'org.assertj.generator' version '0.0.6b'
 }
 
 group 'ru.ifmo.se.testing.edubenetskiy'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+
+sourceSets {
+    main {
+        assertJ {}
+    }
+}
 
 repositories {
     mavenCentral()
