@@ -5,6 +5,7 @@ import java.util.*;
 
 public class AVLTree {
 
+    public LinkedList<String> log = new LinkedList<String>();
 
     public class Node {
         private Node left, right, parent;
@@ -22,15 +23,20 @@ public class AVLTree {
     }
 
     private Node insert(Node node, int value) {
+        this.log.add("[insert]");
+
         /* 1.  Perform the normal BST rotation */
         if (node == null) {
             return(new Node(value));
         }
 
-        if (value < node.value)
+        if (value < node.value) {
+            this.log.add("[insert] Left");
             node.left  = insert(node.left, value);
-        else
+        } else {
+            this.log.add("[insert] Right");
             node.right = insert(node.right, value);
+        }
 
         /* 2. Update height of this ancestor node */
         node.height = Math.max(height(node.left), height(node.right)) + 1;
@@ -42,32 +48,38 @@ public class AVLTree {
         // If this node becomes unbalanced, then there are 4 cases
 
         // Left Left Case
-        if (balance > 1 && value < node.left.value)
+        if (balance > 1 && value < node.left.value) {
+            this.log.add("[insert] Left Left case");
             return rightRotate(node);
+        }
 
         // Right Right Case
-        if (balance < -1 && value > node.right.value)
+        if (balance < -1 && value > node.right.value) {
+            this.log.add("[insert] Right Right case");
             return leftRotate(node);
+        }
 
         // Left Right Case
-        if (balance > 1 && value > node.left.value)
-        {
+        if (balance > 1 && value > node.left.value) {
+            this.log.add("[insert] Left Right case");
             node.left =  leftRotate(node.left);
             return rightRotate(node);
         }
 
         // Right Left Case
-        if (balance < -1 && value < node.right.value)
-        {
+        if (balance < -1 && value < node.right.value) {
+            this.log.add("[insert] Right Left case");
             node.right = rightRotate(node.right);
             return leftRotate(node);
         }
 
+        this.log.add("[insert] Unchanged case");
         /* return the (unchanged) node pointer */
         return node;
     }
 
     private Node rightRotate(Node y) {
+        this.log.add("[rightRotate]");
         Node x = y.left;
         Node T2 = x.right;
 
@@ -84,6 +96,7 @@ public class AVLTree {
     }
 
     private Node leftRotate(Node x) {
+        this.log.add("[leftRotate]");
         Node y = x.right;
         Node T2 = y.left;
 
@@ -123,6 +136,7 @@ public class AVLTree {
     }
 
     private Node deleteNode(Node root, int value) {
+        this.log.add("[deleteNode]");
         // STEP 1: PERFORM STANDARD BST DELETE
 
         if (root == null)
@@ -130,20 +144,22 @@ public class AVLTree {
 
         // If the value to be deleted is smaller than the root's value,
         // then it lies in left subtree
-        if ( value < root.value )
+        if ( value < root.value ) {
+            this.log.add("[deleteNode] Left subtree");
             root.left = deleteNode(root.left, value);
-
+        }
             // If the value to be deleted is greater than the root's value,
             // then it lies in right subtree
-        else if( value > root.value )
+        else if( value > root.value ) {
+            this.log.add("[deleteNode] Right subtree");
             root.right = deleteNode(root.right, value);
 
             // if value is same as root's value, then This is the node
             // to be deleted
-        else {
+        } else {
             // node with only one child or no child
             if( (root.left == null) || (root.right == null) ) {
-
+                this.log.add("[deleteNode] Node with only one child or no child");
                 Node temp;
                 if (root.left != null)
                     temp = root.left;
@@ -163,6 +179,7 @@ public class AVLTree {
             else {
                 // node with two children: Get the inorder successor (smallest
                 // in the right subtree)
+                this.log.add("[deleteNode] Node with two children");
                 Node temp = minValueNode(root.right);
 
                 // Copy the inorder successor's data to this node
@@ -174,8 +191,10 @@ public class AVLTree {
         }
 
         // If the tree had only one node then return
-        if (root == null)
+        if (root == null) {
+            this.log.add("[deleteNode] Tree had only one node");
             return root;
+        }
 
         // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
         root.height = Math.max(height(root.left), height(root.right)) + 1;
@@ -187,21 +206,27 @@ public class AVLTree {
         // If this node becomes unbalanced, then there are 4 cases
 
         // Left Left Case
-        if (balance > 1 && getBalance(root.left) >= 0)
+        if (balance > 1 && getBalance(root.left) >= 0) {
+            this.log.add("[deleteNode] Left Left Case");
             return rightRotate(root);
+        }
 
         // Left Right Case
         if (balance > 1 && getBalance(root.left) < 0) {
+            this.log.add("[deleteNode] Left Right Case");
             root.left =  leftRotate(root.left);
             return rightRotate(root);
         }
 
         // Right Right Case
-        if (balance < -1 && getBalance(root.right) <= 0)
+        if (balance < -1 && getBalance(root.right) <= 0) {
+            this.log.add("[deleteNode] Right Right Case");
             return leftRotate(root);
+        }
 
         // Right Left Case
         if (balance < -1 && getBalance(root.right) > 0) {
+            this.log.add("[deleteNode] Right Left Case");
             root.right = rightRotate(root.right);
             return leftRotate(root);
         }
