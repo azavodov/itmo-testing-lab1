@@ -27,12 +27,12 @@ class SecantFunctionTest {
     }
 
     @Test
-    void getValue_downtoMinusHalfPi_isNegative() {
+    void getValue_downtoMinusHalfPi_isPositive() {
         double x = -(Math.random() * Math.PI / 2);
         double actualValue = testSubject.getValue(x);
         double expectedValue = 1 / Math.cos(x);
 
-        assertThat(actualValue).isNegative();
+        assertThat(actualValue).isPositive();
         assertThat(actualValue).isCloseTo(expectedValue, withinPercentage(10L));
     }
 }
