@@ -1,10 +1,9 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
+package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.PlaceAssert.assertThat;
 
 class PlaceTest {
     @Test
@@ -26,14 +25,14 @@ class PlaceTest {
     @Test
     void test_new_canHaveNoParent() {
         Place house = new Place("house");
-        assertThat(house.getParentPlace()).isNull();
+        PlaceAssert.assertThat(house.getParentPlace()).isNull();
     }
 
     @Test
     void test_new_canHaveParent() {
         Place house = new Place("house");
         Place room = new Place("room", house);
-        assertThat(room.getParentPlace()).isSameAs(house);
+        PlaceAssert.assertThat(room.getParentPlace()).isSameAs(house);
     }
 
     @Test
@@ -75,12 +74,12 @@ class PlaceTest {
     @Test
     void getName_returnsNameFromConstructor() {
         Place room = new Place("room");
-        assertThat(room).hasName("room");
+        PlaceAssert.assertThat(room).hasName("room");
     }
 
     @Test
     void testToString_returnsName() {
         Place room = new Place("room");
-        assertThat(room).hasToString("room");
+        PlaceAssert.assertThat(room).hasToString("room");
     }
 }

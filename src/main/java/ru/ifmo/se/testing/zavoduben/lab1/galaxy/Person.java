@@ -1,4 +1,4 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
+package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

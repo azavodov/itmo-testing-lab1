@@ -1,4 +1,4 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.secant;
+package ru.ifmo.se.testing.zavoduben.lab1.secant;
 
 import java.util.function.DoubleUnaryOperator;
 

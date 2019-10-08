@@ -1,4 +1,4 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
+package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
 public class Legs {
     private final Person owner;

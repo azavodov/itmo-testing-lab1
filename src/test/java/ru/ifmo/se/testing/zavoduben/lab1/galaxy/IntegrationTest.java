@@ -1,11 +1,9 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
+package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.PersonAssert.assertThat;
-import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.JawsAssert.assertThat;
-import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.LegsAssert.assertThat;
+import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.JawsAssert.assertThat;
 
 @Disabled
 class IntegrationTest {
@@ -26,7 +24,7 @@ class IntegrationTest {
         DoubleHeadedNeck charlieNeck = (DoubleHeadedNeck) charlie.getNeck();
 
         charlie.putLegsOnto(controlPanel);
-        assertThat(charlie.getLegs()).hasLocation(controlPanel);
+        LegsAssert.assertThat(charlie.getLegs()).hasLocation(controlPanel);
 
         charlie.getLeftHand().pickTeeth(charlieNeck.getRightHead().getJaws());
         assertThat(charlieNeck.getLeftHead().getJaws()).doesNotHaveCleanTeeth();
@@ -49,17 +47,17 @@ class IntegrationTest {
         SingleHeadedNeck arthurNeck = (SingleHeadedNeck) arthur.getNeck();
 
         arthur.follow(boris);
-        assertThat(arthur).hasLocation(room);
-        assertThat(arthur).isNervous();
-        assertThat(arthur).isNotStunned();
+        PersonAssert.assertThat(arthur).hasLocation(room);
+        PersonAssert.assertThat(arthur).isNervous();
+        PersonAssert.assertThat(arthur).isNotStunned();
 
         arthur.lookAt(charlie);
-        assertThat(arthur).isStunned();
-        assertThat(arthur).isBelievingEyes();
+        PersonAssert.assertThat(arthur).isStunned();
+        PersonAssert.assertThat(arthur).isBelievingEyes();
 
         Things things = new Things();
         arthur.watch(things);
-        assertThat(arthur).isNotBelievingEyes();
+        PersonAssert.assertThat(arthur).isNotBelievingEyes();
         assertThat(arthurNeck.getHead().getJaws()).isHanging();
     }
 }

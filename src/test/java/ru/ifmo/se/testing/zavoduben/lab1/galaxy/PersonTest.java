@@ -1,11 +1,11 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
+package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.PersonAssert.assertThat;
-import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.LegsAssert.assertThat;
+import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.PersonAssert.assertThat;
+import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.LegsAssert.assertThat;
 
 class PersonTest {
 

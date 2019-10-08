@@ -1,4 +1,4 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
+package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,6 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.EyesAssert.assertThat;
 
 class EyesTest {
 
@@ -51,6 +50,6 @@ class EyesTest {
     void test_getNumber_returnsNumberFromConstructor() {
         int numEyes = random.nextInt(Integer.MAX_VALUE - 1) + 1;
         Eyes eyes = new Eyes(numEyes);
-        assertThat(eyes).hasNumber(numEyes);
+        EyesAssert.assertThat(eyes).hasNumber(numEyes);
     }
 }

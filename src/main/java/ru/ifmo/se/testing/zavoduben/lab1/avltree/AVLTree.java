@@ -1,4 +1,4 @@
-package ru.ifmo.se.testing.edubenetskiy.lab1.avltree;
+package ru.ifmo.se.testing.zavoduben.lab1.avltree;
 
 import java.util.*;
 
