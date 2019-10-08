@@ -1,6 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    configurations.maybeCreate('pitest')
+    dependencies {
+        pitest 'org.pitest:pitest-junit5-plugin:0.8'
+    }
+}
+
 plugins {
     id 'java'
     id 'org.assertj.generator' version '0.0.6b'
+    id 'info.solidsoft.pitest' version '1.4.5'
 }
 
 group 'ru.ifmo.se.testing.edubenetskiy'
@@ -34,4 +45,8 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+}
+
+pitest {
+    testPlugin = 'junit5'
 }
