@@ -13,7 +13,7 @@ public class SingleHeadedNeck extends Neck {
 
     SingleHeadedNeck() {
         super();
-        this.head = new Head();
+        this.head = new Head(this);
     }
 
     Head getHead() {
