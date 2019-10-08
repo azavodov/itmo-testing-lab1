@@ -1,10 +1,12 @@
 package ru.ifmo.se.testing.edubenetskiy.lab1.secant;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
+@Disabled
 class SecantFunctionTest {
 
     private SecantFunction testSubject;
