@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.PersonAssert.assertThat;
 
-public class IntegrationTest {
+class IntegrationTest {
 
     @Test
     void main() {
