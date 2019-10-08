@@ -1,12 +1,12 @@
 package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
 
-public class StubPlaces {
+public class PlaceStubs {
     private Place house;
     private Place bedroom;
     private Place diningRoom;
     private Place table;
 
-    StubPlaces() {
+    PlaceStubs() {
         this.house = null;
         this.bedroom = null;
         this.diningRoom = null;

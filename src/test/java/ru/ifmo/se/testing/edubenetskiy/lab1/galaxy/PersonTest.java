@@ -9,12 +9,14 @@ import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.LegsAssert.assertThat;
 
 class PersonTest {
 
-    private StubPlaces places;
+    private PlaceStubs places;
+    private PersonStubs persons;
     private Person testSubject;
 
     @BeforeEach
     void setUp() {
-        this.places = new StubPlaces();
+        this.places = new PlaceStubs();
+        this.persons = new PersonStubs(places);
 
         this.testSubject = new PersonBuilder()
                 .withName("Anton")
@@ -40,49 +42,29 @@ class PersonTest {
 
     @Test
     void follow_changesLocation() {
-        Person boris = new PersonBuilder()
-                .withName("Boris")
-                .withOneHead()
-                .locatedAt(places.getDiningRoom())
-                .build();
-
-        testSubject.follow(boris);
+        Person person = persons.withOneHead();
+        testSubject.follow(person);
         assertThat(testSubject).hasLocation(places.getDiningRoom());
     }
 
     @Test
     void follow_makesSelfNervous() {
-        Person boris = new PersonBuilder()
-                .withName("Boris")
-                .withOneHead()
-                .locatedAt(places.getDiningRoom())
-                .build();
-
-        testSubject.follow(boris);
+        Person person = persons.withOneHead();
+        testSubject.follow(person);
         assertThat(testSubject).isNervous();
     }
 
     @Test
     void lookAt_somebodyWithSameNumberOfHeads_doesNotMakeStunned() {
-        Person boris = new PersonBuilder()
-                .withName("Boris")
-                .withOneHead()
-                .locatedAt(places.getDiningRoom())
-                .build();
-
-        testSubject.lookAt(boris);
+        Person person = persons.withOneHead();
+        testSubject.lookAt(person);
         assertThat(testSubject).isNotStunned();
     }
 
     @Test
     void lookAt_somebodyWithOtherNumberOfHeads_makesStunned() {
-        Person boris = new PersonBuilder()
-                .withName("Boris")
-                .withTwoHeads()
-                .locatedAt(places.getDiningRoom())
-                .build();
-
-        testSubject.lookAt(boris);
+        Person person = persons.withTwoHeads();
+        testSubject.lookAt(person);
         assertThat(testSubject).isStunned();
     }
 
