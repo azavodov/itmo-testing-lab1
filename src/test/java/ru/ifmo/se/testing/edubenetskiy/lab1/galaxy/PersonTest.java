@@ -24,6 +24,21 @@ class PersonTest {
     }
 
     @Test
+    void new_isNotNervous() {
+        assertThat(testSubject).isNotNervous();
+    }
+
+    @Test
+    void new_isNotStunned() {
+        assertThat(testSubject).isNotStunned();
+    }
+
+    @Test
+    void new_isBelievingEyes() {
+        assertThat(testSubject).isBelievingEyes();
+    }
+
+    @Test
     void goTo_movesPerson() {
         Place diningRoom = places.getDiningRoom();
         testSubject.goTo(diningRoom);
