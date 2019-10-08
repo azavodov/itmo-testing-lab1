@@ -1,11 +1,13 @@
 package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.PersonAssert.assertThat;
 import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.JawsAssert.assertThat;
 import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.LegsAssert.assertThat;
 
+@Disabled
 class IntegrationTest {
 
     @Test
