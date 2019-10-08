@@ -3,6 +3,8 @@ package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
 import org.junit.jupiter.api.Test;
 
 import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.PersonAssert.assertThat;
+import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.JawsAssert.assertThat;
+import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.LegsAssert.assertThat;
 
 class IntegrationTest {
 
@@ -19,12 +21,20 @@ class IntegrationTest {
                 .locatedAt(armchair)
                 .build();
 
+        DoubleHeadedNeck charlieNeck = (DoubleHeadedNeck) charlie.getNeck();
+
         charlie.putLegsOnto(controlPanel);
+        assertThat(charlie.getLegs()).hasLocation(controlPanel);
+
+        charlie.getLeftHand().pickTeeth(charlieNeck.getRightHead().getJaws());
+        assertThat(charlieNeck.getLeftHead().getJaws()).doesNotHaveCleanTeeth();
+        assertThat(charlieNeck.getRightHead().getJaws()).hasCleanTeeth();
 
         Person boris = new Person("Boris", outside);
         boris.goTo(room);
 
         Person arthur = new Person("Arthur", outside);
+        SingleHeadedNeck arthurNeck = (SingleHeadedNeck) arthur.getNeck();
 
         arthur.follow(boris);
         assertThat(arthur).hasLocation(room);
@@ -33,6 +43,11 @@ class IntegrationTest {
 
         arthur.lookAt(charlie);
         assertThat(arthur).isStunned();
+        assertThat(arthur).isBelievingEyes();
 
+        Things things = new Things();
+        arthur.watch(things);
+        assertThat(arthur).isNotBelievingEyes();
+        assertThat(arthurNeck.getHead().getJaws()).isHanging();
     }
 }
