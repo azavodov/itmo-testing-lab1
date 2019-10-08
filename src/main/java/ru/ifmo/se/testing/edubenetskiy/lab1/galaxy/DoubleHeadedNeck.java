@@ -9,8 +9,8 @@ public class DoubleHeadedNeck extends Neck {
     private final Head rightHead;
 
     DoubleHeadedNeck() {
-        this.leftHead = new Head();
-        this.rightHead = new Head();
+        this.leftHead = new Head(this);
+        this.rightHead = new Head(this);
     }
 
     @Override
