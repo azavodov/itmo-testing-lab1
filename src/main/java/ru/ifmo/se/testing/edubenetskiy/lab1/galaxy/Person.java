@@ -17,6 +17,7 @@ public class Person {
     private Person observedPerson;
 
     private Logger log = LoggerFactory.getLogger(Person.class);
+    private Hand leftHand;
 
     public Person(String name, Place location) {
         this(name, location, new SingleHeadedNeck());
@@ -29,6 +30,7 @@ public class Person {
         this.isStunned = false;
         this.isBelievingEyes = true;
 
+        this.leftHand = new Hand();
         this.legs = new Legs(this);
         this.neck = neck;
 
@@ -53,6 +55,10 @@ public class Person {
         if (someone.getNumberOfHeads() != this.getNumberOfHeads()) {
             this.isStunned = true;
         }
+    }
+
+    public Neck getNeck() {
+        return this.neck;
     }
 
     private int getNumberOfHeads() {
@@ -88,5 +94,20 @@ public class Person {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    public void watch(Things things) {
+        this.isBelievingEyes = false;
+        this.getNeck().getHeads().forEach(head -> {
+            head.getJaws().hang();
+        });
+    }
+
+    public Hand getLeftHand() {
+        return this.leftHand;
+    }
+
+    public Legs getLegs() {
+        return this.legs;
     }
 }
