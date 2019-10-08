@@ -7,7 +7,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.EyesAssert.assertThat;
 
 class EyesTest {
 
@@ -34,8 +34,15 @@ class EyesTest {
     }
 
     @Test
+    void test_new_canHaveOneEye() {
+        int numEyes = 1;
+        assertThatCode(() -> new Eyes(numEyes))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
     void test_new_canHavePositiveNumberOfEyes() {
-        int numEyes = random.nextInt(Integer.MAX_VALUE - 1) + 1;
+        int numEyes = random.nextInt(Integer.MAX_VALUE - 2) + 2;
         assertThatCode(() -> new Eyes(numEyes))
                 .doesNotThrowAnyException();
     }
@@ -44,6 +51,6 @@ class EyesTest {
     void test_getNumber_returnsNumberFromConstructor() {
         int numEyes = random.nextInt(Integer.MAX_VALUE - 1) + 1;
         Eyes eyes = new Eyes(numEyes);
-        assertThat(eyes.getNumber()).isEqualTo(numEyes);
+        assertThat(eyes).hasNumber(numEyes);
     }
 }
