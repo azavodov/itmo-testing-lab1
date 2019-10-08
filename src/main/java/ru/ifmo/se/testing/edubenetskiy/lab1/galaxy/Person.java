@@ -1,8 +1,8 @@
 package ru.ifmo.se.testing.edubenetskiy.lab1.galaxy;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class Person {
 
     private final String name;
@@ -15,6 +15,8 @@ public class Person {
 
     private Place location;
     private Person observedPerson;
+
+    private Logger log = LoggerFactory.getLogger(Person.class);
 
     public Person(String name, Place location) {
         this(name, location, new SingleHeadedNeck());
