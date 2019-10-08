@@ -32,10 +32,20 @@ class IntegrationTest {
         assertThat(charlieNeck.getLeftHead().getJaws()).doesNotHaveCleanTeeth();
         assertThat(charlieNeck.getRightHead().getJaws()).hasCleanTeeth();
 
-        Person boris = new Person("Boris", outside);
+        Person boris = new PersonBuilder()
+                .withName("Boris")
+                .withOneHead()
+                .locatedAt(outside)
+                .build();
+
         boris.goTo(room);
 
-        Person arthur = new Person("Arthur", outside);
+        Person arthur = new PersonBuilder()
+                .withName("Arthur")
+                .withOneHead()
+                .locatedAt(outside)
+                .build();
+
         SingleHeadedNeck arthurNeck = (SingleHeadedNeck) arthur.getNeck();
 
         arthur.follow(boris);

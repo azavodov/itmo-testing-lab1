@@ -19,10 +19,6 @@ public class Person {
     private Logger log = LoggerFactory.getLogger(Person.class);
     private Hand leftHand;
 
-    public Person(String name, Place location) {
-        this(name, location, new SingleHeadedNeck());
-    }
-
     public Person(String name, Place location, Neck neck) {
         this.name = name;
 
