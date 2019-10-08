@@ -110,4 +110,8 @@ public class Person {
     public Legs getLegs() {
         return this.legs;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }
