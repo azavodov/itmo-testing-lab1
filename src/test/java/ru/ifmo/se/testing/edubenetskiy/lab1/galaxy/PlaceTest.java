@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static ru.ifmo.se.testing.edubenetskiy.lab1.galaxy.PlaceAssert.assertThat;
 
 class PlaceTest {
     @Test
@@ -69,5 +70,17 @@ class PlaceTest {
         Place room = new Place("room", house);
         Place corner = new Place("corner", room);
         assertThat(corner.isInside(house)).isTrue();
+    }
+
+    @Test
+    void getName_returnsNameFromConstructor() {
+        Place room = new Place("room");
+        assertThat(room).hasName("room");
+    }
+
+    @Test
+    void testToString_returnsName() {
+        Place room = new Place("room");
+        assertThat(room).hasToString("room");
     }
 }
