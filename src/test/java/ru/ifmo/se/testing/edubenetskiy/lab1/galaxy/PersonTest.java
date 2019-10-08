@@ -39,6 +39,30 @@ class PersonTest {
     }
 
     @Test
+    void follow_changesLocation() {
+        Person boris = new PersonBuilder()
+                .withName("Boris")
+                .withOneHead()
+                .locatedAt(places.getDiningRoom())
+                .build();
+
+        testSubject.follow(boris);
+        assertThat(testSubject).hasLocation(places.getDiningRoom());
+    }
+
+    @Test
+    void follow_makesSelfNervous() {
+        Person boris = new PersonBuilder()
+                .withName("Boris")
+                .withOneHead()
+                .locatedAt(places.getDiningRoom())
+                .build();
+
+        testSubject.follow(boris);
+        assertThat(testSubject).isNervous();
+    }
+
+    @Test
     void goTo_movesPerson() {
         Place diningRoom = places.getDiningRoom();
         testSubject.goTo(diningRoom);
