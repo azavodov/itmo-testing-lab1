@@ -63,6 +63,30 @@ class PersonTest {
     }
 
     @Test
+    void lookAt_somebodyWithSameNumberOfHeads_doesNotMakeStunned() {
+        Person boris = new PersonBuilder()
+                .withName("Boris")
+                .withOneHead()
+                .locatedAt(places.getDiningRoom())
+                .build();
+
+        testSubject.lookAt(boris);
+        assertThat(testSubject).isNotStunned();
+    }
+
+    @Test
+    void lookAt_somebodyWithOtherNumberOfHeads_makesStunned() {
+        Person boris = new PersonBuilder()
+                .withName("Boris")
+                .withTwoHeads()
+                .locatedAt(places.getDiningRoom())
+                .build();
+
+        testSubject.lookAt(boris);
+        assertThat(testSubject).isStunned();
+    }
+
+    @Test
     void goTo_movesPerson() {
         Place diningRoom = places.getDiningRoom();
         testSubject.goTo(diningRoom);
