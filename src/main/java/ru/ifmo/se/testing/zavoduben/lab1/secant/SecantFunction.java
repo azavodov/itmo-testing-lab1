@@ -16,13 +16,18 @@ public class SecantFunction implements DoubleUnaryOperator {
     }
 
     public double getValue(double x) {
-        if (Math.abs(x) >= Math.PI / 2)
-            throw new IllegalArgumentException("Incorrect value of x (|x| < pi / 2)");
+        if (Double.isInfinite(x)) {
+            throw new IllegalArgumentException("Secant is not defined at infinity");
+        }
+
+        if (Double.isNaN(x)) {
+            throw new IllegalArgumentException("Secant is not defined for NaN");
+        }
 
         double y = 0;
 
         for (int i = 0; i < this.numTerms; i++) {
-            y += (Math.pow(-1, i) * this.getEulerNumber(2 * i) * Math.pow(x, 2 * i)) /
+            y += (Math.pow(-1, i) * Math.pow(x, 2 * i) * this.getEulerNumber(2 * i)) /
                  (this.factorial(2 * i));
         }
 
@@ -51,6 +56,22 @@ public class SecantFunction implements DoubleUnaryOperator {
                 return 2702765;
             case (14):
                 return -199360981;
+            case (16):
+                return 19391512145.;
+            case (18):
+                return -2404879675441.;
+            case (20):
+                return 370371188237525.;
+            case (22):
+                return -69348874393137901.;
+            case (24):
+                return 15514534163557086905.;
+            case (26):
+                return -4087072509293123892361.;
+            case (28):
+                return 1252259641403629865468285.;
+            case (30):
+                return -441543893249023104553682821.;
             default:
                 throw new IllegalArgumentException("The value is too long.");
         }
@@ -66,7 +87,11 @@ public class SecantFunction implements DoubleUnaryOperator {
 
     public static void main(String[] args) {
         SecantFunction secantFunction = new SecantFunction(5);
-        System.out.println(secantFunction.applyAsDouble(555));
+        for (double x = -5.0; x <= 5.0; x += 0.1) {
+            System.out.printf("%.2f -> % .15f%n", x, secantFunction.getValue(x));
+            System.out.printf("%.2f => % .15f%n", x, 1 / Math.cos(x));
+            System.out.println("-----------------------------------");
+        }
     }
 
 }
