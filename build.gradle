@@ -14,7 +14,7 @@ plugins {
     id 'info.solidsoft.pitest' version '1.4.5'
 }
 
-group 'ru.ifmo.se.testing.edubenetskiy'
+group 'ru.ifmo.se.testing.zavoduben'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
