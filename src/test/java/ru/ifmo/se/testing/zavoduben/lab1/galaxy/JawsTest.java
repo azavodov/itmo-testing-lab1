@@ -17,7 +17,24 @@ class JawsTest {
     }
 
     @Test
-    void hasCleanTeeth_defaultFalse() {
+    void new_hasDirtyTeeth() {
         assertThat(testSubject).doesNotHaveCleanTeeth();
+    }
+
+    @Test
+    void new_isNotHang() {
+        assertThat(testSubject).isNotHanging();
+    }
+
+    @Test
+    void hang_makesItHanging() {
+        testSubject.hang();
+        assertThat(testSubject).isHanging();
+    }
+
+    @Test
+    void makeTeethClean_makesTeethClean() {
+        testSubject.makeTeethClean();
+        assertThat(testSubject).hasCleanTeeth();
     }
 }

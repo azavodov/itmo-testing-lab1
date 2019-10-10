@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.LegsAssert.assertThat;
+import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.JawsAssert.assertThat;
 import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.PersonAssert.assertThat;
 
 class PersonTest {
@@ -119,6 +120,29 @@ class PersonTest {
         assertThatCode(() -> testSubject.putLegsOnto(places.getTableInDiningRoom()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Cannot put legs onto table: it is not inside " +
-                            "bedroom where body is located");
+                        "bedroom where body is located");
+    }
+
+    @Test
+    void watch_makesBelieveEyes() {
+        testSubject.watch(new Things());
+        assertThat(testSubject).isNotBelievingEyes();
+    }
+
+    @Test
+    void watch_withOneHead_hangsAllJaws() {
+        testSubject.watch(new Things());
+        SingleHeadedNeck neck = (SingleHeadedNeck) testSubject.getNeck();
+        assertThat(neck.getHead().getJaws()).isHanging();
+    }
+
+    @Test
+    void watch_withTwoHeads_hangsAllJaws() {
+        Person person = persons.withTwoHeads();
+        person.watch(new Things());
+
+        DoubleHeadedNeck neck = (DoubleHeadedNeck) person.getNeck();
+        assertThat(neck.getLeftHead().getJaws()).isHanging();
+        assertThat(neck.getRightHead().getJaws()).isHanging();
     }
 }
