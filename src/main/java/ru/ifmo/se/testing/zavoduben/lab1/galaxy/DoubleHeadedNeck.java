@@ -1,5 +1,6 @@
 package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public class DoubleHeadedNeck extends Neck {
 
     @Override
     public Set<Head> getHeads() {
-        return new HashSet<>();
+        return new HashSet<>(Arrays.asList(leftHead, rightHead));
     }
 
     public Head getLeftHead() {
