@@ -83,6 +83,12 @@ public class Person {
     }
 
     public void putLegsOnto(Place place) {
+        Place bodyLocation = getLocation();
+        if (!place.isInside(bodyLocation)) {
+            throw new IllegalArgumentException(
+                    "Cannot put legs onto " + place + ": it is not inside " +
+                    bodyLocation + " where body is located");
+        }
         log.info("{} puts their legs onto {}", this, place);
         legs.setLocation(place);
     }
