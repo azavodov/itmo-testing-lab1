@@ -34,7 +34,7 @@ public class PlaceStubs {
         return this.diningRoom;
     }
 
-    Place getTable() {
+    Place getTableInDiningRoom() {
         if (table == null) {
             this.table = new Place("table", getDiningRoom());
         }

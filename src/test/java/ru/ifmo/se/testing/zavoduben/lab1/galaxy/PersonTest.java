@@ -4,8 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.PersonAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.LegsAssert.assertThat;
+import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.PersonAssert.assertThat;
 
 class PersonTest {
 
@@ -103,5 +104,21 @@ class PersonTest {
     @Test
     void toString_equalsName() {
         assertThat(testSubject).hasToString(testSubject.getName());
+    }
+
+    @Test
+    void putLegsOnto_placeDescendantOfCurrentLocation_movesLegs() {
+        testSubject.goTo(places.getDiningRoom());
+        testSubject.putLegsOnto(places.getTableInDiningRoom());
+        assertThat(testSubject.getLegs()).hasLocation(places.getTableInDiningRoom());
+    }
+
+    @Test
+    void putLegsOnto_placeNotDescendantOfCurrentLocation_throws() {
+        testSubject.goTo(places.getBedroom());
+        assertThatCode(() -> testSubject.putLegsOnto(places.getTableInDiningRoom()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Cannot put legs onto table: it is not inside " +
+                            "bedroom where body is located");
     }
 }
