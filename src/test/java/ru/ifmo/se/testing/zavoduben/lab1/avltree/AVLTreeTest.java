@@ -1,9 +1,6 @@
 package ru.ifmo.se.testing.zavoduben.lab1.avltree;
 
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import ru.ifmo.se.testing.zavoduben.lab1.logging.LogCollector;
 
