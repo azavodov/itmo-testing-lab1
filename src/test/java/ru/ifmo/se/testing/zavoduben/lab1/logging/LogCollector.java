@@ -1,4 +1,4 @@
-package ru.ifmo.se.testing.zavoduben.lab1.avltree;
+package ru.ifmo.se.testing.zavoduben.lab1.logging;
 
 import ru.ifmo.se.testing.zavoduben.lab1.logging.LogSubscriber;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class LogCollector implements LogSubscriber {
+public class LogCollector implements LogSubscriber {
     private boolean enabled = false;
     private List<String> messages = new ArrayList<>();
 
