@@ -1,7 +1,6 @@
 package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.SingleHeadedNeckAssert.assertThat;

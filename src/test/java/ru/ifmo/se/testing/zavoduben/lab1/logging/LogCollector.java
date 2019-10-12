@@ -1,7 +1,5 @@
 package ru.ifmo.se.testing.zavoduben.lab1.logging;
 
-import ru.ifmo.se.testing.zavoduben.lab1.logging.LogSubscriber;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
