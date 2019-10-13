@@ -19,7 +19,6 @@ class HandTest {
     @Test
     void pickTeeth_makesTeethClean() {
         Jaws jaws = ((SingleHeadedNeck) person.getNeck()).getHead().getJaws();
-        assertThat(jaws).doesNotHaveCleanTeeth();
 
         testSubject.pickTeeth(jaws);
         assertThat(jaws).hasCleanTeeth();
