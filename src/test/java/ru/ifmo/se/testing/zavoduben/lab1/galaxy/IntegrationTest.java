@@ -1,11 +1,9 @@
 package ru.ifmo.se.testing.zavoduben.lab1.galaxy;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static ru.ifmo.se.testing.zavoduben.lab1.galaxy.JawsAssert.assertThat;
 
-@Disabled
 class IntegrationTest {
 
     @Test
@@ -13,7 +11,7 @@ class IntegrationTest {
         Place outside = new Place("outside");
         Place room = new Place("the room");
         Place armchair = new Place("the armchair", room);
-        Place controlPanel = new Place("the control panel", room);
+        Place controlPanel = new Place("the control panel", armchair);
 
         Person charlie = new PersonBuilder()
                 .withName("Charlie")
