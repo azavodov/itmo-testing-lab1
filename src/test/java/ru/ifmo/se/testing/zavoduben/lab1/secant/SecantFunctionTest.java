@@ -126,7 +126,7 @@ class SecantFunctionTest {
 
     @Test
     void getValue_fromHalfPiToPi_plusTwoPiN_isNegativeRising() {
-        double x = (Math.random() * Math.PI / 2) + 2 * randomPiTimesN();
+        double x = (Math.random() * Math.PI / 2) + Math.PI / 2 + 2 * randomPiTimesN();
         System.out.println("x = " + x);
 
         double actualValue = testSubject.getValue(x);
@@ -139,7 +139,7 @@ class SecantFunctionTest {
 
     @Test
     void getValue_fromPiToThreeHalfsPi_plusTwoPiN_isNegativeFalling() {
-        double x = (Math.random() * Math.PI / 2) + 2 * randomPiTimesN();
+        double x = (Math.random() * Math.PI / 2) + Math.PI + 2 * randomPiTimesN();
         System.out.println("x = " + x);
 
         double actualValue = testSubject.getValue(x);
