@@ -2,11 +2,14 @@ package ru.ifmo.se.testing.zavoduben.lab1.secant;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import java.util.Random;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.*;
 
+@Timeout(value = 10, unit = SECONDS)
 class SecantFunctionTest {
 
     private SecantFunction testSubject;
