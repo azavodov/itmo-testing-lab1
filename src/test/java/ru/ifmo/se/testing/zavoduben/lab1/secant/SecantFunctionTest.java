@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.*;
@@ -57,14 +57,14 @@ class SecantFunctionTest {
 
     @Test
     void getValue_atTwoPiN_isPlusOne() {
-        double x = 2.0 * Math.PI * new Random().nextInt();
+        double x = 2.0 * randomPiTimesN();
         System.out.println("x = " + x);
         assertThat(testSubject.getValue(x)).isCloseTo(+1.0D, within(0.1D));
     }
 
     @Test
     void getValue_atPiPlusTwoPiN_isMinusOne() {
-        double x = Math.PI + new Random().nextInt() * 2 * Math.PI;
+        double x = Math.PI + 2 * randomPiTimesN();
         System.out.println("x = " + x);
         int expected = -1;
         double actual = testSubject.getValue(x);
@@ -74,7 +74,7 @@ class SecantFunctionTest {
 
     @Test
     void getValue_atHalfPiPlusPiN_isIndefinite() {
-        double x = Math.PI / 2 + Math.PI * new Random().nextInt();
+        double x = Math.PI / 2 + randomPiTimesN();
         System.out.println("x = " + x);
         double expected = Double.NaN;
         double actual = testSubject.getValue(x);
@@ -102,8 +102,7 @@ class SecantFunctionTest {
 
     @Test
     void getValue_fromMinusHalfPiToZero_plusTwoPiN_isPositiveFalling() {
-        double offset = 2 * Math.PI * new Random().nextInt();
-        double x = -(Math.random() * Math.PI / 2) + offset;
+        double x = -(Math.random() * Math.PI / 2) + 2 * randomPiTimesN();
         System.out.println("x = " + x);
 
         double actualValue = testSubject.getValue(x);
@@ -115,8 +114,7 @@ class SecantFunctionTest {
 
     @Test
     void getValue_fromZeroToHalfPi_plusTwoPiN_isPositiveRising() {
-        double offset = 2 * Math.PI * new Random().nextInt();
-        double x = (Math.random() * Math.PI / 2) + offset;
+        double x = (Math.random() * Math.PI / 2) + 2 * randomPiTimesN();
         System.out.println("x = " + x);
 
         double actualValue = testSubject.getValue(x);
@@ -128,8 +126,7 @@ class SecantFunctionTest {
 
     @Test
     void getValue_fromHalfPiToPi_plusTwoPiN_isNegativeRising() {
-        double offset = 2 * Math.PI * new Random().nextInt();
-        double x = (Math.random() * Math.PI / 2) + offset;
+        double x = (Math.random() * Math.PI / 2) + 2 * randomPiTimesN();
         System.out.println("x = " + x);
 
         double actualValue = testSubject.getValue(x);
@@ -142,8 +139,7 @@ class SecantFunctionTest {
 
     @Test
     void getValue_fromPiToThreeHalfsPi_plusTwoPiN_isNegativeFalling() {
-        double offset = 2 * Math.PI * new Random().nextInt();
-        double x = (Math.random() * Math.PI / 2) + offset;
+        double x = (Math.random() * Math.PI / 2) + 2 * randomPiTimesN();
         System.out.println("x = " + x);
 
         double actualValue = testSubject.getValue(x);
@@ -151,5 +147,9 @@ class SecantFunctionTest {
 
         assertThat(actualValue).isNegative();
         assertThat(actualValue).isCloseTo(expectedValue, withinPercentage(10L));
+    }
+
+    private double randomPiTimesN() {
+        return Math.PI * ThreadLocalRandom.current().nextInt(-10, 10);
     }
 }
