@@ -76,7 +76,6 @@ class SecantFunctionTest {
     void getValue_atHalfPiPlusPiN_isIndefinite() {
         double x = Math.PI / 2 + randomPiTimesN();
         System.out.println("x = " + x);
-        double expected = Double.NaN;
         double actual = testSubject.getValue(x);
         assertThat(actual).isNaN();
     }
